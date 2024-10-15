@@ -54,7 +54,7 @@ export default function ClientHome() {
           todos={todos}
           onEdit={handleEdit}
           onDelete={deleteTodo}
-          onUpdateStatus={(todo: TodoFormValues) =>
+          onUpdateStatus={(todo: Todo) =>
             updateTodo(todo.id, { ...todo, completed: todo.completed })
           }
         />
