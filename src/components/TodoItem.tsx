@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { TableCell, TableRow } from "@/components/ui/table";
-import { Todo } from "@/types/types";
-import { Edit, Trash2 } from "lucide-react";
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { TableCell, TableRow } from '@/components/ui/table';
+import { Todo } from '@/types/types';
+import { Edit, Trash2 } from 'lucide-react';
 
 interface TodoItemProps {
   todo: Todo;
@@ -17,26 +17,22 @@ export default function TodoItem({ todo, onEdit, onDelete, onUpdateStatus }: Tod
       <TableCell>
         <Checkbox
           checked={todo.completed}
-          onCheckedChange={(checked) => 
-            onUpdateStatus({...todo, completed: checked as boolean})
-          }
+          onCheckedChange={(checked) => onUpdateStatus({ ...todo, completed: checked as boolean })}
         />
       </TableCell>
       <TableCell>{todo.title}</TableCell>
       <TableCell>{todo.description}</TableCell>
-      <TableCell>{todo.deadline ? new Date(todo.deadline).toLocaleDateString() : 'No deadline'}</TableCell>
+      <TableCell>
+        {todo.deadline ? new Date(todo.deadline).toLocaleDateString() : 'No deadline'}
+      </TableCell>
       <TableCell>{todo.priority}</TableCell>
       <TableCell className="text-right">
-        <div className="flex justify-end items-center space-x-1">
-          <Button 
-            onClick={() => onEdit(todo)} 
-            variant="ghost"
-            size="icon"
-          >
+        <div className="flex items-center justify-end space-x-1">
+          <Button onClick={() => onEdit(todo)} variant="ghost" size="icon">
             <Edit className="h-4 w-4" />
           </Button>
-          <Button 
-            onClick={() => onDelete(todo.id)} 
+          <Button
+            onClick={() => onDelete(todo.id)}
             variant="ghost"
             size="icon"
             className="text-destructive"

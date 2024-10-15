@@ -1,13 +1,13 @@
-import { auth } from "@clerk/nextjs/server";
-import { sql } from "@vercel/postgres";
-import { NextResponse } from "next/server";
+import { auth } from '@clerk/nextjs/server';
+import { sql } from '@vercel/postgres';
+import { NextResponse } from 'next/server';
 
 // GET /api/todos
 export async function GET() {
   const { userId } = auth();
 
   if (!userId) {
-    return new NextResponse("Unauthorized", { status: 401 });
+    return new NextResponse('Unauthorized', { status: 401 });
   }
 
   try {
@@ -19,8 +19,8 @@ export async function GET() {
 
     return NextResponse.json(todos.rows);
   } catch (error) {
-    console.error("Error fetching todos:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    console.error('Error fetching todos:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
   const { userId } = auth();
 
   if (!userId) {
-    return new NextResponse("Unauthorized", { status: 401 });
+    return new NextResponse('Unauthorized', { status: 401 });
   }
 
   try {
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(newTodo.rows[0], { status: 201 });
   } catch (error) {
-    console.error("Error creating todo:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    console.error('Error creating todo:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

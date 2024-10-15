@@ -1,13 +1,13 @@
-import { ClerkProvider } from '@clerk/nextjs'
-import { Inter } from 'next/font/google'
-import './globals.css'
+import { ClerkProvider } from '@clerk/nextjs';
+import { Inter } from 'next/font/google';
+import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Todo List App',
   description: 'A modern todo list application',
-}
+};
 
 export default function RootLayout({
   children,
@@ -20,5 +20,5 @@ export default function RootLayout({
         <body className={inter.className}>{children}</body>
       </html>
     </ClerkProvider>
-  )
+  );
 }

@@ -1,6 +1,6 @@
-import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Todo } from "@/types/types";
-import TodoItem from "./TodoItem";
+import { Table, TableBody, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Todo } from '@/types/types';
+import TodoItem from './TodoItem';
 
 interface TodoListProps {
   todos: Todo[];
@@ -24,10 +24,10 @@ export default function TodoList({ todos, onEdit, onDelete, onUpdateStatus }: To
       </TableHeader>
       <TableBody>
         {todos.map((todo) => (
-          <TodoItem 
-            key={todo.id} 
-            todo={todo} 
-            onEdit={onEdit} 
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            onEdit={onEdit}
             onDelete={onDelete}
             onUpdateStatus={onUpdateStatus}
           />

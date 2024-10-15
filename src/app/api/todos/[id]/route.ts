@@ -1,13 +1,13 @@
-import { auth } from "@clerk/nextjs/server";
-import { sql } from "@vercel/postgres";
-import { NextResponse } from "next/server";
+import { auth } from '@clerk/nextjs/server';
+import { sql } from '@vercel/postgres';
+import { NextResponse } from 'next/server';
 
 // PATCH /api/todos/[id]
 export async function PATCH(request: Request, { params }: { params: { id: string } }) {
   const { userId } = auth();
 
   if (!userId) {
-    return new NextResponse("Unauthorized", { status: 401 });
+    return new NextResponse('Unauthorized', { status: 401 });
   }
 
   try {
@@ -26,13 +26,13 @@ export async function PATCH(request: Request, { params }: { params: { id: string
     `;
 
     if (updatedTodo.rows.length === 0) {
-      return NextResponse.json({ error: "Todo not found" }, { status: 404 });
+      return NextResponse.json({ error: 'Todo not found' }, { status: 404 });
     }
 
     return NextResponse.json(updatedTodo.rows[0]);
   } catch (error) {
-    console.error("Error updating todo:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    console.error('Error updating todo:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
@@ -41,7 +41,7 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
   const { userId } = auth();
 
   if (!userId) {
-    return new NextResponse("Unauthorized", { status: 401 });
+    return new NextResponse('Unauthorized', { status: 401 });
   }
 
   try {
@@ -52,12 +52,12 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
     `;
 
     if (deletedTodo.rows.length === 0) {
-      return NextResponse.json({ error: "Todo not found" }, { status: 404 });
+      return NextResponse.json({ error: 'Todo not found' }, { status: 404 });
     }
 
-    return NextResponse.json({ message: "Todo deleted successfully" });
+    return NextResponse.json({ message: 'Todo deleted successfully' });
   } catch (error) {
-    console.error("Error deleting todo:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    console.error('Error deleting todo:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

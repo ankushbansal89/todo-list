@@ -1,14 +1,14 @@
-"use server";
+'use server';
 
-import { auth } from "@clerk/nextjs/server";
-import { sql } from "@vercel/postgres";
-import { NextResponse } from "next/server";
+import { auth } from '@clerk/nextjs/server';
+import { sql } from '@vercel/postgres';
+import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   const { userId } = auth();
 
   if (!userId) {
-    return new NextResponse("Unauthorized", { status: 401 });
+    return new NextResponse('Unauthorized', { status: 401 });
   }
 
   try {
@@ -21,7 +21,7 @@ export async function POST(request: Request) {
 
     if (existingProfile.rows.length > 0) {
       const profile = existingProfile.rows[0];
-      
+
       // If existing profile has no name and name is provided in the request, update it
       if (!profile.name && name) {
         const updatedProfile = await sql`
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
         `;
         return NextResponse.json(updatedProfile.rows[0], { status: 200 });
       }
-      
+
       return NextResponse.json(profile, { status: 200 });
     }
 
@@ -45,7 +45,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(result.rows[0], { status: 201 });
   } catch (error) {
-    console.error("Error creating/updating profile:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    console.error('Error creating/updating profile:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
