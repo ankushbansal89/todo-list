@@ -15,7 +15,12 @@ export const todoSchema = z.object({
   deadline: z
     .union([z.string(), z.date()])
     .optional()
-    .transform((val) => (val instanceof Date ? val.toISOString() : val)),
+    .transform((val) => {
+      if (val instanceof Date) {
+        return val.toISOString();
+      }
+      return val;
+    }),
   priority: z.enum(['low', 'medium', 'high']).optional(),
   completed: z.boolean().default(false),
 });

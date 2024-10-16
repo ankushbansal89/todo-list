@@ -26,13 +26,16 @@ export default function TodoItem({ todo, onEdit, onDelete, onUpdateStatus }: Tod
       <TableCell>{todo.deadline && new Date(todo.deadline).toLocaleDateString()}</TableCell>
       <TableCell>{todo.priority}</TableCell>
       <TableCell className="text-right">
-        <Button onClick={() => onEdit(todo)} variant="outline" size="sm" className="mr-2">
-          <Edit className="mr-2 h-4 w-4" />
-          Edit
+        <Button onClick={() => onEdit(todo)} variant="ghost" size="icon" className="h-8 w-8 p-0">
+          <Edit className="h-4 w-4" />
         </Button>
-        <Button onClick={() => onDelete(todo.id)} variant="destructive" size="sm">
-          <Trash2 className="mr-2 h-4 w-4" />
-          Delete
+        <Button
+          onClick={() => onDelete(todo.id)}
+          variant="ghost"
+          size="icon"
+          className="h-8 w-8 p-0 text-destructive"
+        >
+          <Trash2 className="h-4 w-4" />
         </Button>
       </TableCell>
     </TableRow>
